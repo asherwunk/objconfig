@@ -1,5 +1,5 @@
 from objconfig.exception.exceptioninterface import ExceptionInterface
 
 
-class RuntimeException(RuntimeError, ExceptionInterface):
+class IndexException(IndexError, ExceptionInterface):
     pass
