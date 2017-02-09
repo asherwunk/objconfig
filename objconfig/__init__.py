@@ -1,4 +1,4 @@
-
+from objconfig.exception import InvalidArgumentException
 
 def main():
     """Entry point for the objconfig"""

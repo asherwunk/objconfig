@@ -1,0 +1,3 @@
+
+class InvalidArgumentException(RuntimeError):
+    pass
