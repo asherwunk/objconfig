@@ -56,7 +56,10 @@ class Config(Countable, Iterator, ArrayAccess):
         __iter__ is inherited from Iterator
     """
     def __iter__(self):
-        return self.__data.items()
+        def ConfigIterator(self):
+            for key, value in self.__data.items():
+                yield key, value
+        return ConfigIterator(self)
     
     """
     Notes:
@@ -102,11 +105,12 @@ class Config(Countable, Iterator, ArrayAccess):
      */
     """
     def __delitem__(self, key):
-        del self.__data[key]
+        self.__delattr__(key)
     
     """
     Notes:
-        array is expected to implement key, value generating items()
+        array is expected to be instance of dict
+        OR implement toArray() method
     
     /**
      * Constructor.
@@ -153,8 +157,10 @@ class Config(Countable, Iterator, ArrayAccess):
         
         try:
             for key, value in array.items():
-                if (isinstance(value, dict)):
+                if 'items' in dir(value):
                     self.__data[key] = Config(value, allowModifications=self.__allowModifications)
+                elif 'toArray' in dir(value) and inspect.ismethod(value.toArray):
+                    self.__data[key] = Config(value.toArray(), allowModifications=self.__allowModifications)
                 else:
                     self.__data[key] = value
         except AttributeError:
@@ -209,7 +215,7 @@ class Config(Countable, Iterator, ArrayAccess):
             self.__dict__['_Config__data'] = value
             return
         if self.__allowModifications:
-            if hasattr(value, 'items') and inspect.ismethod(value.items):
+            if isinstance(value, dict):
                 self.__data[attribute] = Config(value, allowModifications=True)
             elif attribute is None:
                 raise RuntimeException("Config: __setattr__ attribute must have name")
@@ -226,9 +232,20 @@ class Config(Countable, Iterator, ArrayAccess):
      * @return void
      */
     """
+    def __deepcopy__(self, memo):
+        copyconf = Config({}, allowModifications=True)
+        for key, value in self:
+            setattr(copyconf, key, copy.deepcopy(value))
+        if not self.__allowModifications:
+            copyconf.isReadOnly()
+        return copyconf
+    
     def _clone(self):
         return copy.deepcopy(self)
     
+    def copy(self):
+        return self._clone()
+        
     """
     Notes:
         Returns a copy of the data dictionar(ies)
@@ -241,8 +258,8 @@ class Config(Countable, Iterator, ArrayAccess):
     """
     def toArray(self):
         array = {}
-        for key, value in self.__data:
-            if hasattr(value, 'toArray') and inspect.ismethod(value.toArray):
+        for key, value in self.__data.items():
+            if 'toArray' in dir(value) and inspect.ismethod(value.toArray):
                 array[key] = value.toArray()
             else:
                 array[key] = value
@@ -293,15 +310,15 @@ class Config(Countable, Iterator, ArrayAccess):
     def merge(self, merge):
         for key, value in merge:
             if key in self.__data:
-                if ((hasattr(value, 'toArray') and inspect.ismethod(value.toArray))
-                        and (hasattr(self.__data[key], 'merge') and inspect.ismethod(self.__data[key].merge))):
+                if (('toArray' in dir(value) and inspect.ismethod(value.toArray))
+                        and ('merge' in dir(self) and inspect.ismethod(self.__data[key].merge))):
                     self.__data[key].merge(value)
-                elif hasattr(value, 'toArray') and inspect.ismethod(value.toArray):
+                elif 'toArray' in dir(value) and inspect.ismethod(value.toArray):
                     self.__data[key] = Config(value.toArray(), allowModifications=self.__allowModifications)
                 else:
                     self.__data[key] = value
             else:
-                if hasattr(value, 'toArray') and inspect.ismethod(value.toArray):
+                if 'toArray' in dir(value) and inspect.ismethod(value.toArray):
                     self.__data[key] = Config(value.toArray(), allowModifications=self.__allowModifications)
                 else:
                     self.__data[key] = value
@@ -323,7 +340,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def setReadOnly(self):
         self.__allowModifications = False
         for value in self.__data.values():
-            if hasattr(value, 'setReadOnly') and inspect.ismethod(value.setReadOnly):
+            if 'setReadOnly' in dir(value) and inspect.ismethod(value.setReadOnly):
                 value.setReadOnly()
     
     """
@@ -334,4 +351,4 @@ class Config(Countable, Iterator, ArrayAccess):
      */
     """
     def isReadOnly(self):
-        return self.__allowModifications
+        return not self.__allowModifications
