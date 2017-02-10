@@ -25,7 +25,6 @@ import configparser
 from objconfig.reader import ReaderInterface
 from objconfig.exception import RuntimeException
 import os
-import os.path
 import collections
 
 """
