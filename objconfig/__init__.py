@@ -1,3 +1,5 @@
+from objconfig.config import Config
+
 
 def main():
     """Entry point for the objconfig"""
