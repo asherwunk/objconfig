@@ -1,0 +1,4 @@
+webhost:
+    server: www.example.com
+#cannot begin key with @ in PyYaml
+_@include: another.yaml

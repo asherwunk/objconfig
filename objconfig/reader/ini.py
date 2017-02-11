@@ -24,6 +24,7 @@ from configparser import ConfigParser
 import configparser
 from objconfig.reader import ReaderInterface
 from objconfig.exception import RuntimeException
+from objconfig.util import array_merge_recursive
 import os
 import collections
 
@@ -37,19 +38,6 @@ Following is the class documentation as given in zend-config:
 
 
 class Ini(ReaderInterface):
-    
-    # http://www.php2python.com/wiki/function.array-merge-recursive/
-    @staticmethod
-    def array_merge_recursive(array1, *arrays):
-        for array in arrays:
-            for key, value in array.items():
-                if key in array1:
-                    if isinstance(value, dict):
-                        array[key] = Ini.array_merge_recursive(array1[key], value)
-                    if isinstance(value, (list, tuple)):
-                        array[key] += array1[key]
-            array1.update(array)
-        return array1
     
     @staticmethod
     def configParserToDict(config):
@@ -189,7 +177,7 @@ class Ini(ReaderInterface):
             if isinstance(value, dict):
                 if self.nestSeparator in section:
                     sections = section.split(self.nestSeparator)
-                    ret = Ini.array_merge_recursive(ret, self.buildNestedSection(sections, value))
+                    ret = array_merge_recursive(ret, self.buildNestedSection(sections, value))
                 else:
                     ret[section] = self.processSection(value)
             else:

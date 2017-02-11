@@ -1,5 +1,5 @@
 """
-Test objconfig.util.ArrayAccess
+Test objconfig.reader.Json
 """
 
 import pytest
@@ -15,7 +15,7 @@ def test_emptyinstantiation_json():
 def test_readfromfile_json():
     conf = Json()
     config = conf.fromFile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.json"))
-    assert config['database']['adapter'] == 'pdo_mysql', "Reading test.ini File Failed"
+    assert config['database']['adapter'] == 'pdo_mysql', "Reading test.json File Failed"
     assert config['includedfile']['webhost'] == 'www.exampletwo.com', "Reading test.json File Failed (@include)"
 
 def test_readfromfile_nonexistent_json():

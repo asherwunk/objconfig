@@ -1,5 +1,5 @@
 """
-Test objconfig.util.ArrayAccess
+Test objconfig.reader.ReaderInterface
 """
 
 import pytest
