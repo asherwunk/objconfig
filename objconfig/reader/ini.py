@@ -113,7 +113,7 @@ class Ini(ReaderInterface):
      */
     """
     def fromFile(self, filename):
-        if not os.path.isfile(filename) and not os.access(filename, os.R_OK):
+        if not os.path.isfile(filename) or not os.access(filename, os.R_OK):
             raise RuntimeException("Ini: File %s Doesn't Exist or Not Readable" % filename)
         
         self.directory = os.path.dirname(filename.rstrip(os.sep)) or '.'
@@ -126,7 +126,12 @@ class Ini(ReaderInterface):
                 for line in file:
                     if "@include" in line:
                         include = line.split("=")[1]
-                        with open(os.path.join(self.directory, include), "r") as includedfile:
+                        if include[0] != '/':
+                            include = os.path.join(self.directory, include)
+                        if (not os.path.isfile(os.path.join(self.directory, include))
+                                or not os.access(os.path.join(self.directory, include), os.R_OK)):
+                            raise RuntimeException("Ini: File %s Doesn't Exist or Not Readable" % os.path.join(self.directory, include))
+                        with open(include, "r") as includedfile:
                             for includedline in includedfile:
                                 inicontent += includedline
                     else:

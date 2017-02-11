@@ -19,6 +19,11 @@ def test_readfromfile_ini():
     assert config['database']['server']['ipaddress'] == '192.0.2.62', "Reading test.ini File Failed"
     assert config['website']['server']['ipaddress'] == '192.0.3.128', "Reading test.ini File Failed (@include)"
 
+def test_readfromfile_nonexistent_ini():
+    ini = Ini()
+    with pytest.raises(RuntimeException):
+        config = ini.fromFile("doesntexist.ini")
+
 def test_readfromstring_ini():
     inistring = """
 ; last modified 1 April 2001 by John Doe
@@ -34,8 +39,8 @@ file="payroll.dat"
 """
     ini = Ini()
     config = ini.fromString(inistring)
-    assert config['database']['port'] == '143', "Reading test.ini File Failed"
-    assert config['database']['server']['ipaddress'] == '192.0.2.62', "Reading test.ini File Failed"
+    assert config['database']['port'] == '143', "Reading INI String Failed"
+    assert config['database']['server']['ipaddress'] == '192.0.2.62', "Reading INI String Failed"
 
 def test_readfromstring_impropersubkey_ini():
     inistring = """
@@ -92,5 +97,5 @@ file="payroll.dat"
 """
     ini = Ini()
     config = ini.fromString(inistring)
-    assert config['owner']['profile']['name'] == 'John Doe', "Reading test.ini File Failed"
-    assert config['owner']['position']['job'] == 'manager', "Reading test.ini File Failed"
+    assert config['owner']['profile']['name'] == 'John Doe', "Reading INI String Failed"
+    assert config['owner']['position']['job'] == 'manager', "Reading INI String Failed"

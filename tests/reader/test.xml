@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <webhost value="www.example.com"></webhost>
+    <xi:include href="another.xml"/>
+</config>
