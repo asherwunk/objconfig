@@ -7,7 +7,6 @@ GitHub: http://github.com/asherwunk/objconfig for the source repository
 """
 
 
-
 """
 Emulates the array_merge_recursive function
 """
