@@ -43,10 +43,10 @@ def test_renderwithsections_tofile_ini():
     writer.toFile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"), conf)
     reader = IniReader()
     compconf = reader.fromFile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
+    os.remove(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
     if not compconf["DEFAULT"]:
         del compconf["DEFAULT"]
     assert conf == compconf, "Ini improperly rendered with sections in file"
-    os.remove(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
 
 def test_renderwithoutsections_tofile_ini():
     writer = IniWriter(renderWithoutSections=True)
@@ -55,7 +55,7 @@ def test_renderwithoutsections_tofile_ini():
     writer.toFile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"), conf)
     reader = IniReader()
     compconf = reader.fromFile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
+    os.remove(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
     compconf.update(compconf["DEFAULT"])
     del compconf["DEFAULT"]
     assert conf == compconf, "Ini improperly rendered without sections"
-    os.remove(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.ini"))
