@@ -144,7 +144,7 @@ class Config(Countable, Iterator, ArrayAccess):
          *
          * @var bool
          */
-        """
+        """  # -- unnecessary
         
         """
         /**
