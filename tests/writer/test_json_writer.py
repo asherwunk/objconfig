@@ -1,5 +1,5 @@
 """
-Test objconfig.writer.Ini
+Test objconfig.writer.Json
 """
 
 from objconfig.writer import Json as JsonWriter
@@ -11,8 +11,8 @@ import os
 
 def test_emptyinstantiation_json():
     writer = JsonWriter()
-    assert isinstance(writer, AbstractWriter), "Ini not child of AbstractWriter"
-    assert isinstance(writer, WriterInterface), "Ini not child of WriterInterface"
+    assert isinstance(writer, AbstractWriter), "Json not child of AbstractWriter"
+    assert isinstance(writer, WriterInterface), "Json not child of WriterInterface"
 
 def test_render_json():
     writer = JsonWriter()
