@@ -79,6 +79,7 @@ class Ini(ReaderInterface):
     """
     def setNestSeparator(self, separator):
         self.nestSeparator = separator
+        return self
     
     """
     /**
@@ -242,7 +243,7 @@ class Ini(ReaderInterface):
                     ret = {pieces[0]: ret}
                 else:
                     ret[pieces[0]] = {}
-            elif isinstance(ret[pieces[0]], dict):
+            elif isinstance(ret[pieces[0]], dict) and pieces[1] in ret[pieces[0]]:
                 raise RuntimeException("Ini: Cannot Create Sub-Key for \"%s\" : \"%s\", as key already exists" % (pieces[0], pieces[1]))
             
             self.processKey(pieces[1], value, ret[pieces[0]])
