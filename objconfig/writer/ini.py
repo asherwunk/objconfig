@@ -133,7 +133,7 @@ class Ini(AbstractWriter):
      */
     """
     def addBranch(self, config, parents=None):
-        if parents == None:
+        if parents is None:
             parents = []
         iniContents = ''
         for key, value in config.items():
