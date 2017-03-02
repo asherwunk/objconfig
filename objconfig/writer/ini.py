@@ -178,7 +178,8 @@ class Ini(AbstractWriter):
         ret = {"DEFAULT": {}}
         for key, value in config.items():
             if not isinstance(value, dict):
-                ret["DEFAULT"].update(key, value)
+                # v1.1.1 fixed error of two arguments into one dict
+                ret["DEFAULT"].update({key: value})
             else:
                 ret[key] = value
         return ret
