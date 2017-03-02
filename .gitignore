@@ -11,6 +11,7 @@
 *.so
 *.pyc
 __pycache__*
+dist
 
 # Packages #
 ############
@@ -25,6 +26,7 @@ __pycache__*
 *.tar
 *.zip
 *.phar
+*.egg-info
  
 # Logs and databases #
 ######################
