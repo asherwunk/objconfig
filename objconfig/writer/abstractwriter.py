@@ -24,6 +24,7 @@ from objconfig.writer import WriterInterface
 from objconfig.exception import RuntimeException
 from objconfig.exception import InvalidArgumentException
 import inspect
+import portalocker
 
 """
 Following is the class documentation as given in zend-config:
@@ -34,6 +35,9 @@ Following is the class documentation as given in zend-config:
 class AbstractWriter(WriterInterface):
     
     """
+    CHANGELOG:
+    objconfig v1.1: use portalocker to establish an exclusive lock if given
+    
     /**
      * toFile(): defined by Writer interface.
      *
@@ -46,17 +50,17 @@ class AbstractWriter(WriterInterface):
      * @throws Exception\RuntimeException
      */
     """
-    def toFile(self, filename, config):
+    def toFile(self, filename, config, exclusive=True):
         if not ('toArray' in dir(config) and inspect.ismethod(config.toArray)) and not isinstance(config, dict):
             raise InvalidArgumentException("AbstractWriter: toFile() expects a dictionary or implementing toArray")
         
         if not filename:
             raise InvalidArgumentException("AbstractWriter: No Filename Specified")
         
-        # I don't think python has the idea of an exclusive lock? see PHP implementation
-        
         try:
             with open(filename, "w") as file:
+                if exclusive:
+                    portalocker.lock(file, portalocker.LOCK_EX)
                 file.write(self.toString(config))
         except Exception as e:
             raise RuntimeException("AbstractWriter: Error Writing to \"%s\": %s" % (filename, e))

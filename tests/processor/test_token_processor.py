@@ -29,7 +29,7 @@ def test_replacewithdictionary_token():
     
     token = Token({"WEBHOST": "www.example.com"})
     assert conf["webhost"] == "WEBHOST", "Failed conf building"
-    conf = token.process(conf)
+    token.process(conf)
     assert conf["webhost"] == "www.example.com", "Failed conf token replacement"
 
 def test_replacewithconfig_token():
@@ -50,7 +50,7 @@ def test_replacewithconfig_token():
     token = Token({"DBHOST": "db.example.com", "DBADAPTER": "pdo_mysql"})
     assert config.database.params.host == "DBHOST", "Failed Config construction"
     assert config.database.adapter == "DBADAPTER", "Failed Config construction"
-    config = token.process(config)
+    token.process(config)
     assert config.database.params.host == "db.example.com", "Failed Config token replacement"
     assert config.database.adapter == "pdo_mysql", "Failed Config token replacement"
 
@@ -70,7 +70,7 @@ def test_replacewithdictionary_prefixandsuffix_token():
     
     token = Token({"WEBHOST": "www.example.com"}, "__", "__")
     assert conf["webhost"] == "__WEBHOST__", "Failed conf building"
-    conf = token.process(conf)
+    token.process(conf)
     assert conf["webhost"] == "www.example.com", "Failed conf token replacement"
 
 def test_replacewithdictionary_addtoken_token():
@@ -90,7 +90,7 @@ def test_replacewithdictionary_addtoken_token():
     token = Token({})
     token.addToken("WEBHOST", "www.example.com")
     assert conf["webhost"] == "WEBHOST", "Failed conf building"
-    conf = token.process(conf)
+    token.process(conf)
     assert conf["webhost"] == "www.example.com", "Failed conf token replacement"
 
 def test_replacewithdictionary_processvalue_token():

@@ -237,6 +237,9 @@ class Token(ProcessorInterface):
         return self.doProcess(value, self.buildMap())
     
     """
+    CHANGELOG:
+    objconfig v1.1: edit value in place rather than return copy - 3/2/2017
+    
     /**
      * Applies replacement map to the given value by modifying the value itself
      *
@@ -252,10 +255,9 @@ class Token(ProcessorInterface):
         if isinstance(value, Config):
             if value.isReadOnly():
                 raise InvalidArgumentException("Token: Cannot Process Config Because It Is Read-Only")
-            ret = Config({}, True)
             for key, val in value:
-                ret.__dict__[key] = self.doProcess(val, replacements)
-            return ret
+                value.__dict__[key] = self.doProcess(val, replacements)
+            return value
         elif isinstance(value, dict):
             for key, val in value.items():
                 value[key] = self.doProcess(val, replacements)
