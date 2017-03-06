@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -25,7 +25,7 @@ from objconfig.processor import ProcessorInterface
 from objconfig import Config
 import inspect
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 """
@@ -33,7 +33,7 @@ Following is the class documentation as given in zend-config:
 
 class Token(ProcessorInterface):
     
-    """
+    r"""
     /**
      * Token Processor walks through a Config structure and replaces all
      * occurrences of tokens with supplied values.
@@ -46,7 +46,7 @@ class Token(ProcessorInterface):
      */
     """
     def __init__(self, tokens=None, prefix='', suffix=''):
-        """
+        r"""
         /**
          * Token prefix.
          *
@@ -55,7 +55,7 @@ class Token(ProcessorInterface):
         """
         self.setPrefix(prefix)
         
-        """
+        r"""
         /**
          * Token suffix.
          *
@@ -64,7 +64,7 @@ class Token(ProcessorInterface):
         """
         self.setSuffix(suffix)
         
-        """
+        r"""
         /**
          * The registry of tokens
          *
@@ -73,7 +73,7 @@ class Token(ProcessorInterface):
         """
         self.setTokens(tokens)
         
-        """
+        r"""
         /**
          * Replacement map
          *
@@ -82,7 +82,7 @@ class Token(ProcessorInterface):
         """
         self.map = None
     
-    """
+    r"""
     /**
      * @param  string $prefix
      * @return Token
@@ -93,7 +93,7 @@ class Token(ProcessorInterface):
         self.prefix = prefix
         return self
     
-    """
+    r"""
     /**
      * @return string
      */
@@ -101,7 +101,7 @@ class Token(ProcessorInterface):
     def getPrefix(self):
         return self.prefix
     
-    """
+    r"""
     /**
      * @param  string $suffix
      * @return Token
@@ -112,7 +112,7 @@ class Token(ProcessorInterface):
         self.suffix = suffix
         return self
     
-    """
+    r"""
     /**
      * @return string
      */
@@ -120,7 +120,7 @@ class Token(ProcessorInterface):
     def getSuffix(self):
         return self.suffix
     
-    """
+    r"""
     /**
      * Set token registry.
      *
@@ -147,7 +147,7 @@ class Token(ProcessorInterface):
         self.map = None
         return self
     
-    """
+    r"""
     /**
      * Get current token registry.
      *
@@ -157,7 +157,7 @@ class Token(ProcessorInterface):
     def getTokens(self):
         return self.tokens
     
-    """
+    r"""
     /**
      * Add new token.
      *
@@ -175,7 +175,7 @@ class Token(ProcessorInterface):
         self.map = None
         return self
     
-    """
+    r"""
     /**
      * Add new token.
      *
@@ -187,7 +187,7 @@ class Token(ProcessorInterface):
     def setToken(self, token, value):
         return self.addToken(token, value)
     
-    """
+    r"""
     /**
      * Build replacement map
      *
@@ -203,7 +203,7 @@ class Token(ProcessorInterface):
                 for token, value in self.tokens.items():
                     self.map[self.prefix + token + self.suffix] = value
             
-            """
+            r"""
             foreach (array_keys($this->map) as $key) {
                 if (empty($key)) {
                     unset($this->map[$key]);
@@ -213,7 +213,7 @@ class Token(ProcessorInterface):
             
         return self.map
     
-    """
+    r"""
     /**
      * Process
      *
@@ -225,7 +225,7 @@ class Token(ProcessorInterface):
     def process(self, config):
         return self.doProcess(config, self.buildMap())
     
-    """
+    r"""
     /**
      * Process a single value
      *
@@ -236,7 +236,7 @@ class Token(ProcessorInterface):
     def processValue(self, value):
         return self.doProcess(value, self.buildMap())
     
-    """
+    r"""
     CHANGELOG:
     objconfig v1.1: edit value in place rather than return copy - 3/2/2017
     
@@ -266,7 +266,7 @@ class Token(ProcessorInterface):
             stringval = str(value)
             for fr, to in self.map.items():
                 stringval = stringval.replace(fr, to)
-            """
+            r"""
             if ($changedVal !== $stringVal) {
                 return $changedVal;
             }

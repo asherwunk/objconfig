@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -22,7 +22,7 @@ Following is the header as given in zend-config:
 
 from objconfig.exception import RuntimeException
 
-"""
+r"""
 The following is an 'interface' (abstraction) to be implemented
 by all configuration writers
 """
@@ -30,7 +30,7 @@ by all configuration writers
 
 class WriterInterface():
     
-    """
+    r"""
     /**
      * Write a config object to a file.
      *
@@ -43,7 +43,7 @@ class WriterInterface():
     def toFile(self, filename, config):
         raise RuntimeException("WriterInterface: toFile not implemented in child class")
     
-    """
+    r"""
     /**
      * Write a config object to a string.
      *

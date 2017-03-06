@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -26,7 +26,7 @@ from objconfig.exception import RuntimeException
 import inspect
 import xml.etree.ElementTree as ElementTree
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 """
@@ -37,7 +37,7 @@ class Xml(AbstractWriter):
     def __init__(self):
         self.tree = None
     
-    """
+    r"""
     /**
      * toFile(): defined by Writer interface.
      *
@@ -66,7 +66,7 @@ class Xml(AbstractWriter):
         except Exception as e:
             raise RuntimeException("AbstractWriter: Error Writing to \"%s\": %s" % (filename, e))
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *
@@ -83,7 +83,7 @@ class Xml(AbstractWriter):
         
         return ElementTree.tostring(self.tree.getroot()).decode()
     
-    """
+    r"""
     /**
      * processConfig(): defined by AbstractWriter.
      *
@@ -104,7 +104,7 @@ class Xml(AbstractWriter):
         
         self.tree = ElementTree.ElementTree(root)
     
-    """
+    r"""
     /**
      * Add a branch to an XML object recursively.
      *

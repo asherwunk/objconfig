@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -24,7 +24,7 @@ from objconfig.writer import AbstractWriter
 import inspect
 import json
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 """
@@ -32,7 +32,7 @@ Following is the class documentation as given in zend-config:
 
 class Json(AbstractWriter):
     
-    """
+    r"""
     /**
      * processConfig(): defined by AbstractWriter.
      *

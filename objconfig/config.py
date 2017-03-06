@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -28,7 +28,7 @@ from objconfig.exception import RuntimeException
 import inspect
 import copy
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 /**
@@ -44,14 +44,14 @@ Following is the class documentation as given in zend-config:
 
 class Config(Countable, Iterator, ArrayAccess):
     
-    """
+    r"""
     Notes:
         __len__ is inherited from Countable
     """
     def __len__(self):
         return len(self.__data)
     
-    """
+    r"""
     Notes:
         __iter__ is inherited from Iterator
     """
@@ -61,7 +61,7 @@ class Config(Countable, Iterator, ArrayAccess):
                 yield key, value
         return ConfigIterator(self)
     
-    """
+    r"""
     Notes:
         __getitem__ is inherited by ArrayAccess
     
@@ -76,7 +76,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def __getitem__(self, key):
         return self.__data[key]
     
-    """
+    r"""
     Notes:
         __setitem_ is inherited by ArrayAccess
         
@@ -92,7 +92,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def __setitem__(self, key, value):
         self.__setattr__(key, value)
     
-    """
+    r"""
     Notes:
         __delitem__ is inherited by ArrayAccess
     
@@ -107,7 +107,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def __delitem__(self, key):
         self.__delattr__(key)
     
-    """
+    r"""
     Notes:
         array is expected to be instance of dict
         OR implement toArray() method
@@ -123,7 +123,7 @@ class Config(Countable, Iterator, ArrayAccess):
      */
     """
     def __init__(self, array, allowModifications=False):
-        """
+        r"""
         /**
          * Whether modifications to configuration data are allowed.
          *
@@ -132,7 +132,7 @@ class Config(Countable, Iterator, ArrayAccess):
         """
         self.__allowModifications = allowModifications
         
-        """
+        r"""
         protected $skipNextIteration;
         
         Notes:
@@ -146,7 +146,7 @@ class Config(Countable, Iterator, ArrayAccess):
          */
         """  # -- unnecessary
         
-        """
+        r"""
         /**
          * Data within the configuration.
          *
@@ -166,7 +166,7 @@ class Config(Countable, Iterator, ArrayAccess):
         except AttributeError:
             raise InvalidArgumentException("Config: __init__ passed array doesn't implement key, value : items()")
     
-    """
+    r"""
     /**
      * Retrieve a value and return $default if there is no element set.
      *
@@ -180,7 +180,7 @@ class Config(Countable, Iterator, ArrayAccess):
             return self.__data[name]
         return default
 
-    """
+    r"""
     /**
      * Magic function so that $obj->value will work.
      *
@@ -191,7 +191,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def __getattr__(self, attribute):
         return self.get(attribute)
 
-    """
+    r"""
     Notes:
         Makes a new Config object if value implements key, value : items()
     
@@ -224,7 +224,7 @@ class Config(Countable, Iterator, ArrayAccess):
         else:
             raise RuntimeException("Config: __setattr__ config is read only")
     
-    """
+    r"""
     /**
      * Deep clone of this instance to ensure that nested Zend\Configs are also
      * cloned.
@@ -246,7 +246,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def copy(self):
         return self._clone()
         
-    """
+    r"""
     Notes:
         Returns a copy of the data dictionar(ies)
 
@@ -265,7 +265,7 @@ class Config(Countable, Iterator, ArrayAccess):
                 array[key] = value
         return array
     
-    """
+    r"""
     /**
      * isset() overloading
      *
@@ -276,7 +276,7 @@ class Config(Countable, Iterator, ArrayAccess):
     def _isset(self, attribute):
         return attribute in self.__data
     
-    """
+    r"""
     /**
      * unset() overloading
      *
@@ -291,7 +291,7 @@ class Config(Countable, Iterator, ArrayAccess):
         else:
             raise InvalidArgumentException("Config: __delattr__ config is read only")
     
-    """
+    r"""
     Notes:
         Checks for existence of merge and toArray method
     
@@ -324,7 +324,7 @@ class Config(Countable, Iterator, ArrayAccess):
                     self.__data[key] = value
         return self
     
-    """
+    r"""
     Note:
         Tests for setReadOnly method
     
@@ -343,7 +343,7 @@ class Config(Countable, Iterator, ArrayAccess):
             if 'setReadOnly' in dir(value) and inspect.ismethod(value.setReadOnly):
                 value.setReadOnly()
     
-    """
+    r"""
     /**
      * Returns whether this Config object is read only or not.
      *

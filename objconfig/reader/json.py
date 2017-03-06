@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -25,7 +25,7 @@ from objconfig.exception import RuntimeException
 import json
 import os
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 /**
@@ -37,7 +37,7 @@ Following is the class documentation as given in zend-config:
 class Json(ReaderInterface):
     
     def __init__(self):
-        """
+        r"""
         /**
          * Directory of the JSON file
          *
@@ -46,7 +46,7 @@ class Json(ReaderInterface):
         """
         self.directory = ''
     
-    """
+    r"""
     /**
      * fromFile(): defined by Reader interface.
      *
@@ -90,7 +90,7 @@ class Json(ReaderInterface):
         
         return ret
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *

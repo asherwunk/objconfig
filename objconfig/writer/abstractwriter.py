@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -26,7 +26,7 @@ from objconfig.exception import InvalidArgumentException
 import inspect
 import portalocker
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 """
@@ -34,7 +34,7 @@ Following is the class documentation as given in zend-config:
 
 class AbstractWriter(WriterInterface):
     
-    """
+    r"""
     CHANGELOG:
     objconfig v1.1: use portalocker to establish an exclusive lock if given
     
@@ -65,7 +65,7 @@ class AbstractWriter(WriterInterface):
         except Exception as e:
             raise RuntimeException("AbstractWriter: Error Writing to \"%s\": %s" % (filename, e))
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *
@@ -80,7 +80,7 @@ class AbstractWriter(WriterInterface):
         
         return self.processConfig(config)
     
-    """
+    r"""
     /**
      * @param array $config
      * @return string

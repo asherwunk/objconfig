@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -24,7 +24,7 @@ from objconfig.writer import AbstractWriter
 from objconfig.exception import RuntimeException
 import inspect
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 """
@@ -33,7 +33,7 @@ Following is the class documentation as given in zend-config:
 class Ini(AbstractWriter):
     
     def __init__(self, nestSeparator='.', renderWithoutSections=False):
-        """
+        r"""
         /**
          * Separator for nesting levels of configuration data identifiers.
          *
@@ -42,7 +42,7 @@ class Ini(AbstractWriter):
         """
         self.nestSeparator = nestSeparator
         
-        """
+        r"""
         /**
          * If true the INI string is rendered in the global namespace without
          * sections.
@@ -52,7 +52,7 @@ class Ini(AbstractWriter):
         """
         self.renderWithoutSections = renderWithoutSections
     
-    """
+    r"""
     /**
      * Set nest separator.
      *
@@ -64,7 +64,7 @@ class Ini(AbstractWriter):
         self.nestSeparator = separator
         return self
     
-    """
+    r"""
     /**
      * Get nest separator.
      *
@@ -74,7 +74,7 @@ class Ini(AbstractWriter):
     def getNestSeparator(self):
         return self.nestSeparator
     
-    """
+    r"""
     /**
      * Set if rendering should occur without sections or not.
      *
@@ -89,7 +89,7 @@ class Ini(AbstractWriter):
         self.renderWithoutSections = withoutSections
         return self
     
-    """
+    r"""
     /**
      * Return whether the writer should render without sections.
      *
@@ -99,7 +99,7 @@ class Ini(AbstractWriter):
     def shouldRenderWithoutSections(self):
         return self.renderWithoutSections
     
-    """
+    r"""
     /**
      * processConfig(): defined by AbstractWriter.
      *
@@ -123,7 +123,7 @@ class Ini(AbstractWriter):
                     iniContents += "[" + sectionName + "]\n" + self.addBranch(data) + "\n"
         return iniContents
     
-    """
+    r"""
     /**
      * Add a branch to an INI string recursively.
      *
@@ -144,7 +144,7 @@ class Ini(AbstractWriter):
                 iniContents += self.nestSeparator.join(group) + " = " + self.prepareValue(value) + "\n"
         return iniContents
     
-    """
+    r"""
     NOTE:
         Just converts to string (minus double-quotes)
     
@@ -162,7 +162,7 @@ class Ini(AbstractWriter):
         else:
             return str(value)
     
-    """
+    r"""
     NOTE:
         Default section replaces empty section, as Ini reader won't read wihtout sections
     

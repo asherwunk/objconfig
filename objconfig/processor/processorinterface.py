@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -22,7 +22,7 @@ Following is the header as given in zend-config:
 
 from objconfig.exception import RuntimeException
 
-"""
+r"""
 The following is an 'interface' (abstraction) to be implemented
 by all configuration processors
 """
@@ -30,7 +30,7 @@ by all configuration processors
 
 class ProcessorInterface():
     
-    """
+    r"""
     /**
      * Process the whole Config structure and recursively parse all its values.
      *
@@ -41,7 +41,7 @@ class ProcessorInterface():
     def process(self, value):
         raise RuntimeException("ProcessorInterface: process not implemented in child class")
     
-    """
+    r"""
     /**
      * Process a single value
      *

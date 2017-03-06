@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 NOTE: This file requires PyYaml, which is recorded in the setup.py
@@ -28,7 +28,7 @@ from objconfig.util import array_merge_recursive
 import yaml
 import os
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 /**
@@ -40,12 +40,12 @@ Following is the class documentation as given in zend-config:
 class Yaml(ReaderInterface):
     
     def __init__(self):
-        """
+        r"""
         Utilize load_safe method?
         """
         self.safe = True
         
-        """
+        r"""
         /**
          * Directory of the JSON file
          *
@@ -54,7 +54,7 @@ class Yaml(ReaderInterface):
         """
         self.directory = ''
     
-    """
+    r"""
     /**
      * fromFile(): defined by Reader interface.
      *
@@ -84,7 +84,7 @@ class Yaml(ReaderInterface):
         
         return self.process(conf)
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *
@@ -111,7 +111,7 @@ class Yaml(ReaderInterface):
         
         return self.process(conf)
     
-    """
+    r"""
     /**
      * Process the array for @include
      *

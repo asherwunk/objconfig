@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -28,7 +28,7 @@ from objconfig.util import array_merge_recursive
 import os
 import collections
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 /**
@@ -51,7 +51,7 @@ class Ini(ReaderInterface):
         return ret
     
     def __init__(self, nestSeparator='.'):
-        """
+        r"""
         /**
          * Separator for nesting levels of configuration data identifiers.
          *
@@ -60,7 +60,7 @@ class Ini(ReaderInterface):
         """
         self.nestSeparator = nestSeparator
         
-        """
+        r"""
         /**
          * Directory of the file to process.
          *
@@ -69,7 +69,7 @@ class Ini(ReaderInterface):
         """
         self.directory = ''
         
-    """
+    r"""
     /**
      * Set nest separator.
      *
@@ -81,7 +81,7 @@ class Ini(ReaderInterface):
         self.nestSeparator = separator
         return self
     
-    """
+    r"""
     /**
      * Get nest separator.
      *
@@ -91,7 +91,7 @@ class Ini(ReaderInterface):
     def getNestSeparator(self):
         return self.nestSeparator
     
-    """
+    r"""
     /**
      * fromFile(): defined by Reader interface.
      *
@@ -134,7 +134,7 @@ class Ini(ReaderInterface):
         
         return self.process(ret)
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *
@@ -163,7 +163,7 @@ class Ini(ReaderInterface):
         
         return self.process(ret)
     
-    """
+    r"""
     /**
      * Process data from the parsed ini file.
      *
@@ -186,7 +186,7 @@ class Ini(ReaderInterface):
         
         return ret
     
-    """
+    r"""
     /**
      * Process a nested section
      *
@@ -207,7 +207,7 @@ class Ini(ReaderInterface):
         nestedSection[first] = self.buildNestedSection(sections, value)
         return nestedSection
     
-    """
+    r"""
     /**
      * Process a section.
      *
@@ -222,7 +222,7 @@ class Ini(ReaderInterface):
         
         return ret
     
-    """
+    r"""
     /**
      * Process a key.
      *

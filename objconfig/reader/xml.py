@@ -1,4 +1,4 @@
-"""
+r"""
 This is a port of zend-config to Python
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
@@ -26,7 +26,7 @@ import xml.etree.ElementTree as ElementTree
 import xml.etree.ElementInclude as ElementInclude
 import os
 
-"""
+r"""
 Following is the class documentation as given in zend-config:
 
 /**
@@ -54,7 +54,7 @@ class Xml(ReaderInterface):
         return data
     
     def __init__(self):
-        """
+        r"""
         Actually ElementTree root element
         
         /**
@@ -65,7 +65,7 @@ class Xml(ReaderInterface):
         """
         self.root = None
         
-        """
+        r"""
         /**
          * Directory of the JSON file
          *
@@ -74,7 +74,7 @@ class Xml(ReaderInterface):
         """
         self.directory = ''
     
-    """
+    r"""
     /**
      * fromFile(): defined by Reader interface.
      *
@@ -109,7 +109,7 @@ class Xml(ReaderInterface):
         
         return self.process(self.root)
     
-    """
+    r"""
     /**
      * fromString(): defined by Reader interface.
      *
@@ -134,7 +134,7 @@ class Xml(ReaderInterface):
         
         return self.process(self.root)
     
-    """
+    r"""
     /**
      * Process the next inner element.
      *
