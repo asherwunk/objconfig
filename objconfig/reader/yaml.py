@@ -5,21 +5,29 @@ NOTE: This file requires PyYaml, which is recorded in the setup.py
 
 Some idioms of PHP are still employed, but where possible I have Pythonized it
 
-Author: Asher Wolfstein (http://wunk.me/)
-Package Homepage: http://wunk.me/programming-projects/objconfig-python/
-GitHub: http://github.com/asherwunk/objconfig for the source repository
+IGNORE:
+    Author: Asher Wolfstein Copyright 2017
+    Blog: http://wunk.me/
+    E-Mail: asherwunk@gmail.com
+    Twitter: https://twitter.com/asherwolfstein Send Me Some Love!
+    Package Homepage: http://wunk.me/programming-projects/objconfig-python/
+    GitHub: http://github.com/asherwunk/objconfig for the source repository
+    DevPost: https://devpost.com/software/objconfig
+    Buy Me A Coffee: https://ko-fi.com/A18224XC
+    Support Me On Patreon: https://www.patreon.com/asherwolfstein
+IGNORE
 
-Following is the header as given in zend-config:
+Following is the header as given in zend-config::
 
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the
- *            canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc.
- *            (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+    /**
+     * Zend Framework (http://framework.zend.com/)
+     *
+     * @link      http://github.com/zendframework/zf2 for the
+     *            canonical source repository
+     * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc.
+     *            (http://www.zend.com)
+     * @license   http://framework.zend.com/license/new-bsd New BSD License
+     */
 """
 
 from objconfig.reader import ReaderInterface
@@ -28,43 +36,49 @@ from objconfig.util import array_merge_recursive
 import yaml
 import os
 
-r"""
-Following is the class documentation as given in zend-config:
-
-/**
- * YAML config reader.
- */
-"""
-
 
 class Yaml(ReaderInterface):
+    r"""
+    Following is the class documentation as given in zend-config::
+    
+        /**
+         * YAML config reader.
+         */
+    """
     
     def __init__(self):
+        """Initialize safe and directory members."""
+        
         r"""
         Utilize load_safe method?
         """
         self.safe = True
         
         r"""
-        /**
-         * Directory of the JSON file
-         *
-         * @var string
-         */
+        Following is the header as given in zend-config::
+        
+            /**
+             * Directory of the JSON file
+             *
+             * @var string
+             */
         """
         self.directory = ''
     
-    r"""
-    /**
-     * fromFile(): defined by Reader interface.
-     *
-     * @see    ReaderInterface::fromFile()
-     * @param  string $filename
-     * @return array
-     * @throws Exception\RuntimeException
-     */
-    """
     def fromFile(self, filename):
+        r"""
+        Following is the header as given in zend-config::
+        
+            /**
+             * fromFile(): defined by Reader interface.
+             *
+             * @see    ReaderInterface::fromFile()
+             * @param  string $filename
+             * @return array
+             * @throws Exception\RuntimeException
+             */
+        """
+        
         if not os.path.isfile(filename) and not os.access(filename, os.R_OK):
             raise RuntimeException("Yaml: File %s Doesn't Exist or Not Readable" % filename)
         
@@ -84,16 +98,19 @@ class Yaml(ReaderInterface):
         
         return self.process(conf)
     
-    r"""
-    /**
-     * fromString(): defined by Reader interface.
-     *
-     * @param  string $string
-     * @return array|bool
-     * @throws Exception\RuntimeException
-     */
-    """
     def fromString(self, string):
+        r"""
+        Following is the header as given in zend-config::
+        
+            /**
+             * fromString(): defined by Reader interface.
+             *
+             * @param  string $string
+             * @return array|bool
+             * @throws Exception\RuntimeException
+             */
+        """
+        
         if not string:
             return {}
         
@@ -111,16 +128,19 @@ class Yaml(ReaderInterface):
         
         return self.process(conf)
     
-    r"""
-    /**
-     * Process the array for @include
-     *
-     * @param  array $data
-     * @return array
-     * @throws Exception\RuntimeException
-     */
-    """
     def process(self, array):
+        r"""
+        Following is the header as given in zend-config::
+        
+            /**
+             * Process the array for @include
+             *
+             * @param  array $data
+             * @return array
+             * @throws Exception\RuntimeException
+             */
+        """
+        
         for key, value in (array.items() if 'items' in dir(array) else array):
             if isinstance(value, (tuple, list, dict)):
                 array[key] = self.process(value)
