@@ -2,3 +2,6 @@
 include *.md
 include *.txt
 include LICENSE
+include Makefile
+recursive-include source *.py
+recursive-include source *.rst
