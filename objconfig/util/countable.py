@@ -21,7 +21,6 @@ class Countable():
     def __len__(self):
         """How many items are in this collection?"""
         
-        
         raise RuntimeException("Countable: __len__ not implemented in child class")
 
     def count(self):
