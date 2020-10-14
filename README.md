@@ -1,3 +1,7 @@
+# ABANDONED
+
+No further development or support will be dedicated to this project.  I am currently no longer posting on GitHub.  Use at your own risk!
+
 # objconfig
 
 A Python port of zend-config (PHP)
@@ -12,11 +16,7 @@ NOTE:
 
 https://github.com/zendframework/zend-config
 
-If you appreciate my programming consider supporting me at the following links:
-* [KO-FI](http://ko-fi.com/asherwolfstein)
-* [Patreon](https://www.patreon.com/asherwolfstein)
-
 For further information on the author please visit:
-* [My Beautiful Life - And All It's Friends](http://wunk.me/ "Personal Blog")
-* [ObjConfig Homepage](http://wunk.me/programming-projects/objconfig-python/)
+* [World Of Wunk](http://wunk.me/ "Personal Website")
+* [ObjConfig Homepage](http://archive.wunk.me/programming-projects/objconfig-python/)
 
