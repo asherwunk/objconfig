@@ -17,6 +17,5 @@ NOTE:
 https://github.com/zendframework/zend-config
 
 For further information on the author please visit:
-* [World Of Wunk](http://wunk.me/ "Personal Website")
-* [ObjConfig Homepage](http://archive.wunk.me/programming-projects/objconfig-python/)
+* [World Of Wunk](https://wunk.me/ "Personal Website")
 
